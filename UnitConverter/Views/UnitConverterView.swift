@@ -18,7 +18,7 @@ struct StyledComponent: ViewModifier {
                 return 15
             }
         }
-        
+
         content
             .padding(componentPadding)
             .foregroundStyle(.white)
@@ -35,39 +35,39 @@ extension View {
 }
 
 struct UnitConverterView: View {
-    
+
     @Environment(\.colorScheme) var colorScheme
-    
+
     @FocusState private var keypadIsFocused: Bool
-    
+
     @StateObject public var viewModel: UnitConverterViewModel
-    
+
     var tintColor: Color = .white
     var sectionHeaderColor: Color = .white
-    
+
     let charactersLimit = 10
-    
+
     var body: some View {
-        
+
         let backgroundColor: Color = colorScheme == .dark
         ? Color(red: 0, green: 0, blue: 0.25)
         : Color.blue.opacity(0.5)
-        
+
         let closeButtonColor: Color = colorScheme == .dark
         ? .white
         : Color.blue.opacity(0.5)
-        
+
         ZStack{
-            
+
             backgroundColor.ignoresSafeArea()
-            
+
             NavigationView {
                 Form {
-                    
+
                     Section(header: Text("Convert a unit").foregroundStyle(sectionHeaderColor).bold()) {
-                        
+
                         VStack {
-                            
+
                             // Text field for entering the value to be converted
                             TextField("Enter a value: ", text: $viewModel.amountToConvert)
                                 .keyboardType(.decimalPad).focused($keypadIsFocused)
@@ -89,7 +89,7 @@ struct UnitConverterView: View {
                                         }
                                     }
                                 }
-                            
+
                             Picker("Unit Type", selection: $viewModel.categoryIndex) {
                                 ForEach(viewModel.combinedUnitTypes().indices, id: \.self) { index in
                                     Text(viewModel.combinedUnitTypes()[index]).tag(index)
@@ -97,8 +97,8 @@ struct UnitConverterView: View {
                             }
                             .tint(tintColor)
                             .styledComponent()
-                            
-                            
+
+
                             Picker(selection: $viewModel.sourceUnitIndex, label: Text("From")) {
                                 ForEach(viewModel.units.indices, id: \.self) { index in
                                     Text(viewModel.units[index]).tag(index)
@@ -106,7 +106,7 @@ struct UnitConverterView: View {
                             }
                             .tint(tintColor)
                             .styledComponent()
-                            
+
                             Picker(selection: $viewModel.targetUnitIndex, label: Text("To")) {
                                 ForEach(viewModel.units.indices, id: \.self) { index in
                                     Text(viewModel.units[index]).tag(index)
@@ -117,13 +117,13 @@ struct UnitConverterView: View {
                         }
                     }
                     .listRowBackground(Color.clear)
-                    
+
                     let conversionResult = viewModel.convert()
-                    
+
                     if conversionResult.isSuccess {
                         Section(header: Text("Conversion").foregroundStyle(sectionHeaderColor).bold()) {
                             let unitTypeName = viewModel.units[viewModel.targetUnitIndex]
-                            
+
                             TextField("", text: .constant("\(conversionResult.value) \(unitTypeName)"))
                                 .accessibility(identifier: "conversionText")
                                 .styledComponent()
@@ -131,17 +131,17 @@ struct UnitConverterView: View {
                         }
                         .listRowBackground(Color.clear)
                     }
-                    
+
                     if conversionResult.isSuccess {
                         Section(header: Text("More").foregroundStyle(sectionHeaderColor).bold()) {
                             let unitIndices = viewModel.getRandomUnitIndices()
                             let numberOfOptions = 2
-                            
+
                             VStack {
                                 ForEach(0..<numberOfOptions, id: \.self) { index in
                                     let conversionResult = viewModel.convert(unitIndex: unitIndices[index])
                                     let unitTypeName = viewModel.units[unitIndices[index]]
-                                    
+
                                     TextField("", text:.constant("\(conversionResult.value) \(unitTypeName)"))
                                         .styledComponent()
                                         .disabled(true)

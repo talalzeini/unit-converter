@@ -27,21 +27,21 @@ final class UnitConverterTests: XCTestCase {
     let decimalPadIndex = 1
 
     let testCases: [String: String] = [
-            "0.5": "50 Centimeters",
-            "1.25": "125 Centimeters",
-            "2.75": "275 Centimeters",
-            "3.6": "360 Centimeters",
-            "4.2": "420 Centimeters",
-            "5.8": "580 Centimeters",
-            "7.3": "730 Centimeters",
-            "8.9": "890 Centimeters",
-            "9.1": "910 Centimeters",
-            "10.5": "1050 Centimeters",
-            "00000": "0 Centimeters",
-            "153.002000": "15300.2 Centimeters",
-            "00000.1": "10 Centimeters",
-            "00000.100500": "10.05 Centimeters",
-            "": ""
+        "0.5": "50 Centimeters",
+        "1.25": "125 Centimeters",
+        "2.75": "275 Centimeters",
+        "3.6": "360 Centimeters",
+        "4.2": "420 Centimeters",
+        "5.8": "580 Centimeters",
+        "7.3": "730 Centimeters",
+        "8.9": "890 Centimeters",
+        "9.1": "910 Centimeters",
+        "10.5": "1050 Centimeters",
+        "00000": "0 Centimeters",
+        "153.002000": "15300.2 Centimeters",
+        "00000.1": "10 Centimeters",
+        "00000.100500": "10.05 Centimeters",
+        "": ""
     ]
 
     func enterTextFieldInput(inputValue: String) throws {
@@ -75,7 +75,7 @@ final class UnitConverterTests: XCTestCase {
                 try enterTextFieldInput(inputValue: inputValue)
 
                 try testConversion(expectedResult: expectedResult)
-
+                
                 // Close the decimal pad
                 try tapButton(index: decimalPadIndex)
             }
