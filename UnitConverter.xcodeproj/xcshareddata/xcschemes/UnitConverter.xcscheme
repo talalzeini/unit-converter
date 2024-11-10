@@ -34,7 +34,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F098E5FE2B1EF70F005B461A"
+               BlueprintIdentifier = "F0B355632C7E8B4E0095A90F"
                BuildableName = "UnitConverterUITests.xctest"
                BlueprintName = "UnitConverterUITests"
                ReferencedContainer = "container:UnitConverter.xcodeproj">
@@ -56,7 +56,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F098E61C2B1EF9A0005B461A"
+               BlueprintIdentifier = "F0B355562C7E85FF0095A90F"
                BuildableName = "UnitConverterUnitTests.xctest"
                BlueprintName = "UnitConverterUnitTests"
                ReferencedContainer = "container:UnitConverter.xcodeproj">
